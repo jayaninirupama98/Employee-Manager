@@ -4,9 +4,8 @@ const bodyParser = require('body-parser');
 const app = express();
 const cors = require("cors");
 const port = 4200;
-const mongoString = "mongodb+srv://admin:admin123@employeeclus.iurs3u5.mongodb.net/?retryWrites=true&w=majority"
-const router = require('./routes/employee-routes');
-
+const mongoString = "mongodb+srv://admin:admin123@employeeclus.iurs3u5.mongodb.net/employee_db?retryWrites=true&w=majority"
+const router = require('./routes/employee-routes'); 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());

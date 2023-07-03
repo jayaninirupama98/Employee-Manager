@@ -31,7 +31,7 @@ function Add({employees, setEmployees, setIsAdding}) {
     const handleAdd = e => {
         e.preventDefault();
     setIsAdding(true);
-    console.log(`Submitted: ${firstName} ${lastName} ${email} ${phone} ${gender}`);
+    // console.log(`Submitted: ${firstName} ${lastName} ${email} ${phone} ${gender}`);
 
     if(firstName!==''&& lastName!==''&& email!==''&& phone!==''&& gender!=='' ){
       let data = {
@@ -42,23 +42,23 @@ function Add({employees, setEmployees, setIsAdding}) {
         gender:gender
       }
 
-      fetch('http://localhost:3000/employee', {
+      fetch('http://localhost:4200/addemployee', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(data)
+      }).then(response => {
+        console.log(response);
+        if (response.status === 200) {
+          console.log('Data stored successfully!');
+        } else {
+          console.error('Error storing data:', response.status);
+        }
       })
-        .then(response => {
-          if (response.status === 'ok') {
-            console.log('Data stored successfully!');
-          }else{
-            console.error('Error storing data:', response.status);
-          }
-        })
-        .catch(error => {
-          console.error('Error storing data:', error);
-        });
+      .catch(error => {
+        console.error('Error storing data:', error);
+      });
     }else{
         console.log("All Forms must be filled");
     }
@@ -128,3 +128,4 @@ function Add({employees, setEmployees, setIsAdding}) {
 }
 
 export default Add;
+
